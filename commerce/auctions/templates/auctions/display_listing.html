@@ -1,0 +1,78 @@
+{% extends "auctions/layout.html" %}
+
+
+{% block body %}
+    {% if listing.closed and user == listing.price.user %}
+        <div class="alert alert-success" role="alert">
+            Congratulations {{ listing.price.user }}, You Won The Auction!
+        </div>
+    {% endif %}  
+    
+    {% if owner and not listing.closed %}
+        <a class="btn btn-info" id="close-auction" href="{% url 'close_auction' listing.id %}"> Close Auction </a>    
+    {% endif %}    
+
+
+<div class="container">
+    {% if message %}
+        {% if updated %}
+            <div class="alert alert-success" role="alert">
+                {{ message }}
+            </div> 
+        {% else %}
+            <div class="alert alert-danger" role="alert">
+                {{ message }}
+            </div> 
+        {% endif %}
+    {% endif %}
+
+    <span class="badge badge-pill badge-warning">{{ listing.category }}</span>
+    <h1> {{listing.title}} </h1>
+    <img src="{{listing.image_url}}" alt="LISTING IMAGE">
+    <p> {{listing.describtion}} </p>
+    <p id="bid"> Current Bid: <span id="price"> {{listing.price}} </span></p>
+
+
+    {% if user.is_authenticated and not listing.closed %}
+        <form action ="{% url 'new_bid' listing.id %}" method="post">        
+        {% csrf_token %}
+            <div class="form-group">
+                <label>New Bid</label>
+                <input type="number" name="price" class="form-control" id="exampleFormControlInput1">
+            </div>
+
+        <button id="bid-button" class="btn btn-primary" type="submit">New Bid</button>
+        </form>
+
+    {% if listing_in_watchlist %}
+        <a class="btn btn-primary" href="{% url 'remove_watchlist' listing.id %}"> Remove from watchlist </a>   
+    {% else %}
+        <a class="btn btn-primary" href="{% url 'add_watchlist' listing.id %}"> Add to watchlist </a>
+    {% endif %}
+
+    <form action ="{% url 'comments' listing.id %}" method="post">
+    {% csrf_token %}
+        <div class="container pb-cmnt-container">
+                <div class="card-block">
+                    <textarea class="form-control" name="comment" placeholder="Add comment"></textarea>
+                    <input type="submit" class="btn btn-primary float-xs-right" type="button" value="Comment"></button>
+                </div>
+        </div>     
+    </form> 
+
+    {% endif %}
+</div>
+
+<div class="card border-light col col-12 col-lg-12 col-md-12 col-sm-12">
+<h2>Comments</h2>
+{% for comment in comments %}
+<div class="card border-scondary">
+    <div class="card-header">
+        Comment By {{comment.writer}}
+    </div>
+    <div class="card-body">
+        <p class="card-title">{{comment.comment}}</p>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

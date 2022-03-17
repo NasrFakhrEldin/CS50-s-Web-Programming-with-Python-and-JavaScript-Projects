@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+    
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>    
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="style_advanced.css">
+        <title>Search</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <img src="google.png" alt="" id=g-icon>
+            <ul class="nav" id="google_search">
+                <li calss="nav-item">
+                    <a class="nav-link active" href="index.html">Google Search</a>
+                </li>
+            </ul>
+    
+        </nav>
+
+        <h1>Advanced Search</h1>    
+
+        <div class="d-flex justify-content-left" id="search">  
+        <form action="https://google.com/search">
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">All These Words</label>
+                    <div class="col-sm-10">
+                        <input class="form-control text-field" type="text" name="as_epq">
+                    </div> 
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">This Exact Word Or Phrase</label>
+                    <div class="col-sm-10">
+                        <input class="form-control text-field" type="text" name="as_epq">
+                    </div>         
+            </div>        
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Any Of These Words</label>
+                    <div class="col-sm-10">
+                        <input class="form-control text-field" type="text" name="as_epq">
+                    </div> 
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">None Of These Words</label>
+                    <div class="col-sm-10">
+                        <input class="form-control text-field" type="text" name="as_epq">
+                    </div> 
+            </div>
+            <button class="btn btn-primary" type="submit">Advanced Search</button>
+        </form>
+        </div>
+        </div>
+    </body>
+</html>
